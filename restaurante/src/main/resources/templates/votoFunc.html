@@ -19,11 +19,11 @@
 	<header>
 			 <nav>
 			    <div class="nav-wrapper">
-			      <a href="#" class="brand-logo">New Restaurant</a>
+			      <a href="#" class="brand-logo">New Vote</a>
 			      
 			      <ul id="nav-mobile" class="right hide-on-med-and-down">
-			        <li><a href="/listRest" class="waves-effect waves-light btn"><i
-			class="material-icons left">format_list_bulleted</i> List of restaurant</a></li>
+			        <li><a href="/listVotes" class="waves-effect waves-light btn"><i
+			class="material-icons left">format_list_bulleted</i> List of votes</a></li>
 			       
 			      </ul>
 			    </div>
@@ -33,8 +33,16 @@
 		<div class="container formRestaurant">	
 		<th:block th:include="mensagem"></th:block>		
 			<form class="container" method="post">
-				Name: <input type="text" value="" name="nome"/>				
-				Endereco: <input type="text" value="" name="endereco"/>	 
+				<div class="input-field col s12">
+				    <select name="func">
+						<option th:each="f:${func}" th:value="${f.id}" th:text="${f.nome}" />
+				    </select>			    
+				    <label>Select the funcionary</label>
+			  </div>			
+				<div class="input-field col s3">
+						Data: <input type="date" value="" name="data"/>
+				</div>
+				 
 				<button class="waves-effect waves-light btn" type="submit">Salvar</button>			
 			</form>
 		</div>
@@ -43,7 +51,14 @@
 		<script type="text/javascript"
 			src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
 		<script type="text/javascript" src="materialize/js/materialize.min.js"></script>
-		
+		<script type="text/javascript">//<![CDATA[
+			window.onload=function(){
+			$(document).ready(function() {
+			    $('select').material_select();
+			});
+			}//]]> 
+
+		</script>
 	
 </body>
 </html>
