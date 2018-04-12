@@ -34,11 +34,17 @@
 		<th:block th:include="mensagem"></th:block>		
 			<form class="container" method="post">
 				<div class="input-field col s12">
-				    <select name="func">
+				    <select name="idFunc">
 						<option th:each="f:${func}" th:value="${f.id}" th:text="${f.nome}" />
 				    </select>			    
 				    <label>Select the funcionary</label>
-			  </div>			
+			  </div>	<br/>
+			  <div class="input-field col s12">
+				    <select name="idRest">
+						<option th:each="r:${rest}" th:value="${r.id}" th:text="${r.nome}" />
+				    </select>			    
+				    <label>Select the restaurant</label>
+			  </div>		
 				<div class="input-field col s3">
 						Data: <input type="date" value="" name="data"/>
 				</div>

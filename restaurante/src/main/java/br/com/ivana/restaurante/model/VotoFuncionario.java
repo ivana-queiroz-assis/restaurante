@@ -1,9 +1,10 @@
 package br.com.ivana.restaurante.model;
 
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.OneToOne;
+
 import javax.validation.constraints.NotEmpty;
 
 @Entity
@@ -13,15 +14,22 @@ public class VotoFuncionario {
 	@GeneratedValue
 	private long id;
 	
-	
-	@OneToOne
-	private Funcionario func;
+	@NotEmpty
+	private String idFunc;
 	
 	@NotEmpty
+	private String idRest;
+	
 	private String data;
 	
 	public long getId() {
 		return id;
+	}
+	public String getIdRest() {
+		return idRest;
+	}
+	public void setIdRest(String idRest) {
+		this.idRest = idRest;
 	}
 	public void setId(long id) {
 		this.id = id;
@@ -29,19 +37,21 @@ public class VotoFuncionario {
 	
 	public VotoFuncionario() {
 		super();
-	}
+	}	
 	
-	public Funcionario getFunc() {
-		return func;
-	}
-	public void setFunc(Funcionario func) {
-		this.func = func;
-	}
-	public VotoFuncionario(long id, @NotEmpty Funcionario func, @NotEmpty String data) {
+	
+	public VotoFuncionario(long id, @NotEmpty String idFunc, @NotEmpty String idRest, String data) {
 		super();
 		this.id = id;
-		this.func = func;
+		this.idFunc = idFunc;
+		this.idRest = idRest;
 		this.data = data;
+	}
+	public String getIdFunc() {
+		return idFunc;
+	}
+	public void setIdFunc(String idFunc) {
+		this.idFunc = idFunc;
 	}
 	public String getData() {
 		return data;

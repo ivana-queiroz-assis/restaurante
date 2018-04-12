@@ -11,8 +11,10 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import br.com.ivana.restaurante.model.Funcionario;
+import br.com.ivana.restaurante.model.Restaurante;
 import br.com.ivana.restaurante.model.VotoFuncionario;
 import br.com.ivana.restaurante.repository.FuncionarioRepository;
+import br.com.ivana.restaurante.repository.RestauranteRepository;
 import br.com.ivana.restaurante.repository.VotoFuncionarioRepository;
 
 @Controller
@@ -22,28 +24,30 @@ public class VotoFuncionarioController {
 	VotoFuncionarioRepository repoVotoFunc;
 	@Autowired
 	FuncionarioRepository repoFunc;
+	@Autowired
+	RestauranteRepository repoRest;
 	
 	@RequestMapping(value="/votoFunc",  method = RequestMethod.GET)
 	public ModelAndView newVotoFunc() {
 	
 		ModelAndView mv = new ModelAndView("votoFunc");
 		Iterable<Funcionario> func = repoFunc.findAll();
+		Iterable<Restaurante> rest= repoRest.findAll();
 		mv.addObject("func", func);
-		System.out.println("Ivana: "+ func.toString());
+		mv.addObject("rest",rest);		
 		return mv;	
 	}
 	
 	@RequestMapping(value = "/votoFunc", method = RequestMethod.POST)
-	public String votoFunc(@RequestParam("func") String func, @Valid VotoFuncionario v, BindingResult result, RedirectAttributes attributes) {
+	public String votoFunc( @Valid VotoFuncionario v, BindingResult result, RedirectAttributes attributes) {
 
 		if (result.hasErrors()) {
 			attributes.addFlashAttribute("mensagem", "Check the camps");
 			System.out.println("Erro: "+result.toString());
 			return "redirect:/votoFunc";
 		}
-		attributes.addFlashAttribute("mensagem", "Vote save with sucess!");
-		Funcionario f= repoFunc.findById(Integer.parseInt(func));
-		v.setFunc(f);
+		attributes.addFlashAttribute("mensagem", "Vote save with sucess!");	
+		
 		repoVotoFunc.save(v);
 		return "redirect:/votoFunc";
 

@@ -9,26 +9,60 @@
 	<!--Import materialize.css-->
 	<link type="text/css" rel="stylesheet"
 		href="materialize/css/materialize.min.css" media="screen,projection" />
-	
+	<script language="JavaScript"  src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.0/jquery.min.js"></script>
 	<!--Let browser know website is optimized for mobile-->
 	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-	<link rel="stylesheet" href="materialize/style/style.css"/>
+	<link rel="stylesheet" href="materialize/style/style.css"/>	
+			
+		<script type="text/javascript">//<![CDATA[
+			$(document).ready(function () {
+				$(".dropdown-trigger").dropdown();
+			});
+		
+		</script>
     </head>
 </head>
 <body>	
-	<header>
-			 <nav>
-			    <div class="nav-wrapper">
-			      <a href="#" class="brand-logo">New Restaurant</a>
-			      
-			      <ul id="nav-mobile" class="right hide-on-med-and-down">
-			        <li><a href="/listRest" class="waves-effect waves-light btn"><i
-			class="material-icons left">format_list_bulleted</i> List of restaurant</a></li>
-			       
-			      </ul>
-			    </div>
-			  </nav>		
-		</header>
+	
+	
+  
+	  <!-- Dropdown Structure -->
+	<ul id="dropdown1" class="dropdown-content">
+	  <li><a href="/rest">New Restaurant</a></li>
+	  <li><a href="/listRest">List of Restaurants</a></li>	  
+	  <li class="divider"></li>
+	  <li><a href="#!">Delete Restaurant</a></li>
+	</ul>
+	
+	<ul id="dropdown2" class="dropdown-content">
+	  <li><a href="/func">New Funcionary</a></li>
+	  <li><a href="/listFunc">List of Funcionary</a></li>	  
+	  <li class="divider"></li>
+	  <li><a href="#!">Delete Funcionary</a></li>
+	</ul>
+	
+	<ul id="dropdown3" class="dropdown-content">
+	  <li><a href="/votoFunc">Vote</a></li>
+	  <li class="divider"></li>
+	  <li><a href="/listFunc">Result</a></li>	
+	  
+	 
+	</ul>
+	
+	<nav>
+	  <div class="nav-wrapper">
+	    <a href="#!" class="brand-logo">Desafio</a>
+	    <ul class="right hide-on-med-and-down">
+	      
+	      <!-- Dropdown Trigger -->
+	      <li><a class="dropdown-trigger" href="#!" data-target="dropdown1">Restaurant<i class="material-icons right">arrow_drop_down</i></a></li>
+	      <li><a class="dropdown-trigger" href="#!" data-target="dropdown2">Funcionary<i class="material-icons right">arrow_drop_down</i></a></li>	      
+	      <li><a class="dropdown-trigger" href="#!" data-target="dropdown3">Vote<i class="material-icons right">arrow_drop_down</i></a></li>
+	    </ul>
+	  </div>
+	</nav>
+  
+	
 		<br>
 		<div class="container formRestaurant">	
 		<th:block th:include="mensagem"></th:block>		
